@@ -1,0 +1,45 @@
+body  {
+    font-family: "Sofia", sans-serif;
+    font-size: 25px;
+    background-color: #F1E5D1;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  .buttonstyle {
+    border-radius: 20px;
+    margin: 0;
+    padding: none;
+    border-style: calc();
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    text-decoration: none;
+  }
+        @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 5rem;
+    }
+  }   
+  .divstyle{
+            display: flex; 
+            align-items: start;
+            margin-bottom: 20px;
+          }
+  p{
+    display: inline-flex;
+    align-items: center;
+  }
+  .textbox{
+      width: 128%;
+      padding: 10px;
+      font-size: 25px;
+      box-sizing: border-box;
+  }
+  .container{
+    width: 100%;
+    padding: 10px 0;
+  }
+  .buttonstyle svg {
+    vertical-align: middle;
+  }
