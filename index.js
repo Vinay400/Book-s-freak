@@ -3,18 +3,21 @@ import bodyparser from "body-parser";
 import path from "path";
 import { fileURLToPath } from 'url';
 import pg from 'pg';
+import dotenv from 'dotenv';
+dotenv.config();
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.set('view engine', 'ejs');
+
 app.set('views', path.join(__dirname, 'views'));
 const db = new pg.Client({
-    user: "postgres",
-    password: "Vinay1236", 
-    port: 5432,
-    database: "books",
-    host: "localhost"
+    user: process.env.PG_USER,
+    password: process.env.PG_PASSWORD, 
+    port: process.env.PG_PORT,
+    database: process.env.PG_DATABASE,
+    host: process.env.PG_HOST
 });
 db.connect();
 app.use(bodyparser.urlencoded({extended: true}));
