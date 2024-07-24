@@ -16,7 +16,6 @@ const {Pool} = pkg;
 const pool = new Pool({
     connectionString : process.env.DATABASE_URL,
 });
-export default pool;
 app.set('views', path.join(__dirname, 'views'));
 const db = new pg.Client({
     user: process.env.PG_USER,
