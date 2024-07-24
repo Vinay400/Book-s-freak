@@ -4,13 +4,19 @@ import path from "path";
 import { fileURLToPath } from 'url';
 import pg from 'pg';
 import dotenv from 'dotenv';
+import  pkg  from "pg";
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.set('view engine', 'ejs');
+const {Pool} = pkg;
 
+const pool = new Pool({
+    connectionString : process.env.DATABASE_URL,
+});
+export default pool;
 app.set('views', path.join(__dirname, 'views'));
 const db = new pg.Client({
     user: process.env.PG_USER,
@@ -19,7 +25,9 @@ const db = new pg.Client({
     database: process.env.PG_DATABASE,
     host: process.env.PG_HOST
 });
-db.connect();
+db.connect()
+.then(()=> console.log('Connected to the database'))
+.catch(err => console.error('Connection error', err.stack));
 app.use(bodyparser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 async function getbooks(){
