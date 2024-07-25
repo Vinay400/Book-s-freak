@@ -18,11 +18,7 @@ const pool = new Pool({
 });
 app.set('views', path.join(__dirname, 'views'));
 const db = new pg.Client({
-    user: process.env.PG_USER,
-    password: process.env.PG_PASSWORD, 
-    port: process.env.PG_PORT,
-    database: process.env.PG_DATABASE,
-    host: process.env.PG_HOST
+  connectionString: process.env.DATABASE_URL,
 });
 db.connect()
 .then(()=> console.log('Connected to the database'))
