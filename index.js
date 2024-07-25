@@ -33,7 +33,7 @@ async function getbooks(){
     const result = await db.query("SELECT title,dateread::text As date_only,isbn,rating,description,amazonlink,id FROM books");
     return result.rows;
 };
-app.get("/", async(req, res )=>{
+app.get("/", async(req, res)=>{
     try{
     let booksinformation = []; 
     const result = await getbooks();
@@ -156,11 +156,11 @@ app.post("/editnotes" , async(req, res)=>{
         return res.status(400).send('Missing required fields');
     }
     try{
-        const result = await db.query("UPDATE books SET description = $1 WHERE id = $2", [input, id]);
+        const result = await db.query("UPDATE books SET notes = $1 WHERE id = $2", [input, id]);
         res.redirect(`/book/:${title}`);
     } catch(err) {
         console.error(err.stack);
-        res.status(500).send('Error updating description.');
+        res.status(500).send('Error updating notes.');
     }
 });
 app.post("/editrating", async(req, res)=>{
